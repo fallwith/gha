@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Close GitHub Issues on PR merges to non-default branches",
   "main": "index.js",
-  "scripts": {}
+  "scripts": {
     "test": "echo \"TODO: add tests\" && exit 1"
   },
   "keywords": [],
