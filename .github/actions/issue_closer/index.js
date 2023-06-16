@@ -24,12 +24,13 @@ try {
 
   const octokit = github.getOctokit;
 
-  const { data: pullRequest } = await octokit.rest.pulls.get({
+  const pullRequest = octokit.rest.pulls.get({
     owner: "fallwith",
     repo: "gha",
     pull_number: number,
   });
 
+  console.log(`The PR: ${pullRequest}`);
 
 
 
