@@ -7,10 +7,12 @@ try {
   const number = payload.number;
   console.log(`The number is ${number}`);
 
-  const ref = payload.base.ref;
+  const base = payload.pull_request.base;
+
+  const ref = base.ref;
   console.log(`The ref is ${ref}`);
 
-  const fullName = payload.base.ref.repo.full_name;
+  const fullName = base.repo.full_name;
   console.log(`The full name is ${fullName}`);
 
 
