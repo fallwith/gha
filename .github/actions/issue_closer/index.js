@@ -22,12 +22,13 @@ try {
   // const token = core.getInput('token');
   // const octokit = github.getOctokit(token)
 
+  const octokit = github.getOctokit;
 
-  // const { data: pullRequest } = await octokit.rest.pulls.get({
-  //   owner: "fallwith",
-  //   repo: "gha",
-  //   pull_number: 123,
-  // });
+  const { data: pullRequest } = await octokit.rest.pulls.get({
+    owner: "fallwith",
+    repo: "gha",
+    pull_number: number,
+  });
 
 
 
