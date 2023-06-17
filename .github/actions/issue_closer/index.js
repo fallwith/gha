@@ -71,12 +71,13 @@ async function closeIssues(issueNumbers, owner, repo, token) {
   let i = 0;
   while (i < issueNumbers.length) {
     console.log(`Using Octokit to close Issue #${issueNumbers[0]}...`);
-    await octokit.rest.issues.update({
+    const result = await octokit.rest.issues.update({
       owner: owner,
       repo: repo,
       issue_number: issueNumbers[0],
       state: 'closed'
     });
+    console.log(`Octokit result: ${result}`);
     i++;
   }
 }
