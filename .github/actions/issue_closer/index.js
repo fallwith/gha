@@ -4,6 +4,7 @@ const octokit_graphql = require('@octokit/graphql');
 
 const DEFAULT_BRANCH = 'dev';
 const COMMENT_COUNT = 100;
+const RESPONSE_SUCCESS = 200;
 
 async function prComments(owner, repo, number, token) {
   query = `query { 
@@ -71,13 +72,15 @@ async function closeIssues(issueNumbers, owner, repo, token) {
   let i = 0;
   while (i < issueNumbers.length) {
     console.log(`Using Octokit to close Issue #${issueNumbers[0]}...`);
-    const result = await octokit.rest.issues.update({
+    const response = await octokit.rest.issues.update({
       owner: owner,
       repo: repo,
       issue_number: issueNumbers[0],
       state: 'closed'
     });
-    console.log(`Octokit result: ${result}`);
+    if (response.status != RESPONSE_SUCCESS) {
+      throw `REST call to update issue ${issueNumbers[0]} failed - ${JSON.stringify(response)}`
+    }
     i++;
   }
 }
