@@ -75,8 +75,7 @@ async function closeIssues(issueNumbers, owner, repo, token) {
       owner: owner,
       repo: repo,
       issue_number: issueNumbers[0],
-      state: 'closed',
-      state_reason: 'closed'
+      state: 'closed'
     });
     i++;
   }
