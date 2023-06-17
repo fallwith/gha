@@ -8,7 +8,8 @@ branch the PR was merged into.
 
 ## Inputs
 
-(none)
+token: A GitHub token with permission to read PR body text, read PR comments,
+       and close referenced GitHub issues.
 
 ## Outputs
 
