@@ -65,6 +65,23 @@ async function issueNumbersFromPRComments(comments) {
   return [...new Set(issueNumbers)]; // de-dupe
 }
 
+async function closeIssues(issueNumbers, owner, repo, token) {
+  const octokit = github.getOctokit(token);
+
+  let i = 0;
+  while (i < issueNumbers.length) {
+    console.log(`Using Octokit to close Issue #${issueNumbers[0]}...`);
+    await octokit.rest.issues.update({
+      owner: owner,
+      repo: repo,
+      issue_number: issueNumbers[0],
+      state: 'closed',
+      state_reason: 'closed'
+    });
+    i++;
+  }
+}
+
 async function run() {
   try {
     const token = core.getInput('token');
@@ -107,6 +124,8 @@ async function run() {
     }
 
     console.log(`Issue ids in need of closing: ${issueNumbers}`);
+    closeIssues(issueNumbers, owner, repo, token);
+    console.log('Done');
   } catch (error) {
     core.setFailed(error.message);
   }
